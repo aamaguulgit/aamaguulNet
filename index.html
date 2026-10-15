@@ -3,110 +3,378 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buulaay Mareerrey - Maansada aamaguul</title>
+    <title>Welcome To Aamaguul.net</title>
     <style>
+        /* Base Styling */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f4f4f4;
             color: #333;
-            line-height: 1.8;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
+            line-height: 1.5;
         }
-        h1 {
-            color: #1a5276;
-            text-align: center;
-            border-bottom: 2px solid #ddd;
-            padding-bottom: 10px;
+
+        /* Hero Banner Container (Gees ilaa Gees) */
+        .hero-banner {
+            position: relative;
+            width: 100%;
+            height: 80px; /* Dherer aad u habboon oo banner ah */
+            overflow: hidden;
+            background-color: lime;  /* #1e824c; */
         }
-        .date {
+
+        /* Sawirka cagaaran oo aan stretched noqonayn oo cover ah */
+        .hero-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 40%; /* Wuxuu si fiican u muujinayaa geedka iyo dhulka cagaaran */
+            display: block;
+        }
+
+        /* Qoraalka ku dul yaalla sawirka */
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.35); /* Madoobaad fudud oo qoraalku ka soo dhex muuqdo */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            color: #666;
-            font-style: italic;
+            color: #ffffff;
+            padding: 0 15px;
+        }
+
+        .hero-overlay h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9);
+            text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+
+        .hero-overlay p {
+            font-size: 1rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
+            font-weight: 300;
+        }
+
+        /* Navigation Menu & Dropdown */
+        nav {
+            background-color: #0b1a30;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav ul li {
+            position: relative;
+        }
+
+        nav ul li a {
+            display: block;
+            color: #ffffff;
+            padding: 10px 16px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: background 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: #1e824c;
+        }
+
+        /* Dropdown Styling */
+        nav ul li ul.dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #0b1a30;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.3);
+            border-radius: 0 0 5px 5px;
+        }
+
+        nav ul li ul.dropdown li {
+            width: 100%;
+        }
+
+        nav ul li ul.dropdown li a {
+            padding: 8px 12px;
+            font-weight: normal;
+            border-bottom: 1px solid #1f334d;
+        }
+
+        nav ul li ul.dropdown li a:hover {
+            background-color: #1e824c;
+        }
+
+        nav ul li:hover ul.dropdown {
+            display: block;
+        }
+
+        /* Container Layout (Waasac ah Dhexda) */
+        .container {
+            display: flex;
+            max-width: 1350px;
+            margin: 15px auto;
+            padding: 0 10px;
+            gap: 15px;
+        }
+
+        /* Sidebars Cabbirooda */
+        .sidebar-left, .sidebar-right {
+            width: 190px;
+            flex-shrink: 0;
+            background: #ffffff;
+            padding: 12px;
+            border-radius: 5px;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.08);
+            align-self: flex-start;
+        }
+
+        /* Main Content Area (Waasaca Dhexe) */
+        .main-content {
+            flex: 1;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 5px;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.08);
+        }
+
+        .widget-title {
+            color: #0b6623;
+            font-size: 1rem;
+            border-bottom: 2px solid #1e824c;
+            padding-bottom: 4px;
+            margin-bottom: 10px;
+        }
+
+        .main-title {
+            color: #0b6623;
+            border-bottom: 2px solid #1e824c;
+            padding-bottom: 8px;
             margin-bottom: 20px;
         }
-        .intro {
-            background: #fff;
-            padding: 15px;
-            border-left: 4px solid #1a5276;
-            margin-bottom: 25px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+
+        /* Compact Links for Left Sidebar */
+        .widget-list-compact {
+            list-style: none;
         }
-        .poem {
-            background: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+        .widget-list-compact li {
+            margin-bottom: 3px;
+            padding-bottom: 3px;
+            border-bottom: 1px dotted #eee;
+            font-size: 0.85rem;
+            line-height: 1.2;
+        }
+
+        .widget-list-compact li a {
+            color: #1e824c;
+            text-decoration: none;
+            display: block;
+        }
+
+        .widget-list-compact li a:hover {
+            text-decoration: underline;
+            color: #0b6623;
+        }
+
+        /* Standard List for Right Sidebar */
+        .widget-list {
+            list-style: none;
+            font-size: 0.9rem;
+        }
+
+        .widget-list li {
+            margin-bottom: 8px;
+            border-bottom: 1px dashed #eee;
+            padding-bottom: 4px;
+        }
+
+        .widget-list li a {
+            color: #1e824c;
+            text-decoration: none;
+        }
+
+        .widget-list li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Maansooyinka (Aan lahayn xariiqda bidix) */
+        .maanso-item {
+            margin-bottom: 20px;
+        }
+
+        .maanso-title {
+            color: #0b6623;
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+
+        .maanso-text {
+            font-style: italic;
             white-space: pre-line;
-            font-size: 1.1em;
+            background-color: #fdfdfd;
+            padding: 15px;
+            border-radius: 3px;
+            font-size: 1.05rem;
+            line-height: 1.7;
         }
-        .footer {
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: #ddd;
+            margin: 25px 0;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0b1a30;
+            color: #ffffff;
             text-align: center;
+            padding: 12px 0;
             margin-top: 30px;
-            color: #555;
-            font-size: 0.9em;
-            border-top: 1px solid #ddd;
-            padding-top: 15px;
+            border-top: 3px solid #1e824c;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 850px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar-left, .sidebar-right {
+                width: 100%;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li ul.dropdown {
+                position: relative;
+            }
         }
     </style>
 </head>
 <body>
-<h1>Buulaay Mareerrey, 02-10-2005</h1>
-    <div class="intro">
-        <p>Maansadan Buulaay Mareerrey, waxay dhalatay 02-10-2005, oo aan markii iigu horraysay tegey Tuulada ama aan dhaho Magaalada Buulo Mareer waayo way u qalantaa, waxanna ku arkay waxyaabo badan oo aad u cajiib ah, waana tan:</p>
+
+    <!-- Header Banner: Sawirka cagaaran ee cajiibka ah -->
+    <header class="hero-banner">
+        <img src="warshubo.jpg" alt="">
+        <div class="hero-overlay">
+            <h1>Welcome to Aamaguul.net</h1>
+            <p>Deegaanka Warshubo & Dhaqanka Aqoon-wadaagga</p>
+        </div>
+    </header>
+
+    <!-- Navigation Menu Bar -->
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="0-aamagbyiFrame.html" target="_blank">aamaguul</a></li>
+            <li>
+                <a href="#">Suugaan &#9662;</a>
+                <ul class="dropdown">
+                    <li><a href="#">Abwaan Yamyam</a></li>
+                    <li><a href="#">Abwaan Raage Ugaas</a></li>
+                    <li><a href="#">Abwaan Timacadde</a></li>
+                    <li><a href="#">Abwaan Afgudhiye</a></li>
+                    <li><a href="#">Abwaanno Kale...</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Caafimaad</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">About us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        
+        <!-- Left Sidebar: Compact Important Links -->
+        <aside class="sidebar-left">
+            <h3 class="widget-title">Important Links</h3>
+            <ul class="widget-list-compact">
+                <li><a href="https://www.google.com" target="_blank">▸ Google</a></li>
+                <li><a href="https://www.youtube.com" target="_blank">▸ YouTube</a></li>
+                <li><a href="https://www.bbc.com" target="_blank">▸ BBC News</a></li>
+                <li><a href="https://www.theguardian.com" target="_blank">▸ The Guardian</a></li>
+                <li><a href="https://www.aljazeera.com" target="_blank">▸ Al Jazeera</a></li>
+                <li><a href="#" target="_blank">▸ HTML Tutorials</a></li>
+                <li><a href="#" target="_blank">▸ CSS Tricks</a></li>
+                <li><a href="#" target="_blank">▸ W3Schools</a></li>
+                <li><a href="#" target="_blank">▸ Wikipedia</a></li>
+                <li><a href="#" target="_blank">▸ GitHub Docs</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Area: Qoraallada iyo Maansooyinka (Waasac) -->
+        <main class="main-content">
+            <h2 class="main-title">Maansooyinka & Qoraallada</h2>
+
+            <!-- Maanso 1 -->
+            <article class="maanso-item">
+                <h3 class="maanso-title">Maanso: Wadadii Warshubo</h3>
+                <div class="maanso-text">
+                    Tixda iyo tusaalaha maansada...
+                    Waxaa halkan ku qormaya tixaha maansada oo si waasac ah oo indhaha u roon loo akhrin karo...
+                </div>
+            </article>
+
+            <hr>
+
+            <!-- Maanso 2 -->
+            <article class="maanso-item">
+                <h3 class="maanso-title">Maanso 2: [Magaca Maansada P2]</h3>
+                <div class="maanso-text">
+                    Halkan ka bilaabmaysa maansadaada qaybteeda labaad...
+                </div>
+            </article>
+
+        </main>
+
+        <!-- Right Sidebar: Mawduucyo Muhiim ah -->
+        <aside class="sidebar-right">
+            <h3 class="widget-title">Mawduucyo</h3>
+            <ul class="widget-list">
+                <li><a href="https://www.worldometers.info/">Live Population</a></li>
+                <li><a href="#">Flight Bookings</a></li>
+                <li><a href="#">Age Calculator</a></li>
+                <li><a href="#">Histories</a></li>
+            </ul>
+        </aside>
+
     </div>
 
-    <div class="poem">
-Buulaay Mareerrey, Belo iyo Dhibaatiyo, 
-Baas laga fogeeyaay, Cid waliba ha baydhoo, 
-ha la booddo Beentee, taan u bogayo maantaay,
-
-Inkastoon Baddeediyo, Xogta hoose anan baran,
-Boqollaala Qoysoo, kala Beela baa dega,
-
-Baallaha Adduunyada, Dulmi wuu ka buuxaa,
-balse Buuladaan deyey, Beelu beel ma liiddoo,
-ways wada bariidshaan.
-
-Bini aadan badan &, Badarrada la beecshaa, 
-Suuqa baradi yaacaya.
-
-Galley iyo Bariis iyo, Baasto iyo Qajaar iyo,
-Babbaayga iyo Maangiyo, nooc walboo Bataatiya, 
-lugu beeray Webigiyo, Beerta Roobka lagu shubo, 
-baa yaalla Buulada.
-
-Weli waxa ku badanoy, la baaxaadegeysaa, 
-Xoolaha bidhaantood.
-
-Waxa kaloo ku badanoo, ay Banaadir dheertahay, 
-Dibi baalla weynoo, Shaagag loo bineeyoo,
-u baxaaya Shaqadoo, Beel dhan biilka siinaya.
-
-Mid galleyda buubshiyo, muruq maalku badanaa, 
-Gabar Baradho keentiyo, Beeralleydu badanaa,
-
-Isgaarsiinta buubtoo, Hawadaa birqaysiyo,
-Hawal-wadeenku badanaa. 
-
-Cismaan baabka Diintiyo, jecelaana Baari'a,
-Ugaas Xamar u baxay oo, Bira dheer ka keenoo,
-
-Golweyn soo balleeyaa, qaar ku soo ballamiyaye,
-badanaa Shaqaaluhu.
-
-Inkastoon Ammaan badan, Buulo soo butaaciyey, 
-kolley Ceebta baabkeed, Bini waad ku leedee,
-
-marka Buubku kaco-ee, Hawadaasi boor galo,
-Qof Sanboor ka buuxsamay, biiftiisu badanaa.
-    </div>
-
-    <div class="footer">
-        <p>Max'ed Cabdi<br>
-        <a href="mailto:aamaguul3@gmail.com">aamaguul3@gmail.com</a></p>
-    </div>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Aamaguul.net - Deegaanka Warshubo. Dhammaan xuquuqda waa la dhowray.</p>
+    </footer>
 
 </body>
 </html>
